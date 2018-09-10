@@ -28,7 +28,7 @@ public class AdminLogin extends AppCompatActivity {
                 }
                 else
                 {
-                    Toast.makeText(getApplicationContext(),"Incoorect password",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"Incorrect username",Toast.LENGTH_SHORT).show();
                 }
 
 
