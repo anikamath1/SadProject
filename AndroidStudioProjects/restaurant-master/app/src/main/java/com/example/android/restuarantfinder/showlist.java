@@ -46,10 +46,11 @@ public class showlist extends AppCompatActivity {
         obj.setOnItemClickListener( new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView,View view,int position,long arg) {
-                if(adapterView.getItemAtPosition(position).toString().equalsIgnoreCase("food point"))
+                if(adapterView.getItemAtPosition(position).toString().equalsIgnoreCase("Hotel Galaxy"))
                 {
                     //int pos = position;
                     String name = (String) adapterView.getItemAtPosition(position);
+                    name="mao";
 
                     Intent mao = new Intent(showlist.this, Mao.class);
                     mao.putExtra("restName", name);

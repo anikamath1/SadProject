@@ -66,7 +66,9 @@ public class Mao extends AppCompatActivity {
         placeOrderButton.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                finish();
+                Intent intent = new Intent(Mao.this, PlaceOrder.class);
+                startActivity(intent);
             }
         } );
     }

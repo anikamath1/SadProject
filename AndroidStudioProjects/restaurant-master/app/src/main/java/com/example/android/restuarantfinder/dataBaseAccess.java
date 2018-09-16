@@ -73,7 +73,8 @@ public class dataBaseAccess {
         Cursor cursor = db.rawQuery("select * from menuMao where itemType like ?", selectionArgs);
         cursor.moveToFirst();
         while(!cursor.isAfterLast()){
-            list.add(cursor.getString(2));
+            String str=cursor.getString(2) + "\t" + cursor.getString(3);
+            list.add(str);
             cursor.moveToNext();
         }
         cursor.close();

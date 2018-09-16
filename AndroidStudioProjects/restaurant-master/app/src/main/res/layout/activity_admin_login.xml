@@ -15,7 +15,9 @@
             android:id="@+id/Username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="ADMINLOGIN" />
+            android:text="ADMINLOGIN"
+            android:textSize="30dp"
+            android:layout_gravity="center_horizontal"/>
 
         <EditText
             android:id="@+id/adminusername"

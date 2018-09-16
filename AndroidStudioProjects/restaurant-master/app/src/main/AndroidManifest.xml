@@ -56,7 +56,8 @@
         <activity android:name=".StartUpActivity" />
         <activity android:name=".AdminLogin" />
         <activity android:name=".AdminPassword" />
-        <activity android:name=".AddEditAddressName"></activity>
+        <activity android:name=".AddEditAddressName" />
+        <activity android:name=".PlaceOrder"></activity>
     </application>
 
 </manifest>
