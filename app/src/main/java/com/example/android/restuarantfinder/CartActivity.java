@@ -48,7 +48,9 @@ public class CartActivity extends AppCompatActivity {
         submitOrder.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 Intent intent = new Intent( CartActivity.this,BillPayment.class );
+                intent.putExtra("currentTotal", currentTotal);
                 startActivity( intent );
             }
         } );
@@ -64,7 +66,6 @@ public class CartActivity extends AppCompatActivity {
 
             //intent = getIntent();
             //ArrayList<OrderList> orderList = new ArrayList<>();
-            allMenuMao allmenumao = null;
 
             int price = intent.getIntExtra( "price",0 );
             int currentValInt = intent.getIntExtra( "currentValInt",0 );
@@ -73,33 +74,36 @@ public class CartActivity extends AppCompatActivity {
             boolean checkInc = intent.getBooleanExtra("checkInc", false);
             boolean checkDec = intent.getBooleanExtra("checkDec", false);
             boolean deselect = intent.getBooleanExtra("deselect", false);
+            int pos = intent.getIntExtra("pos", 0);
             //String buttonDec = intent.getStringExtra("buttonDec");
 
             if (checked) {
                 currentTotal += price;
+                ItemListAdapter.menuMaos.get(pos).setTotalPrice(currentValInt*ItemListAdapter.menuMaos.get(pos).getItemPrice());
+                ItemListAdapter.menuMaos.get(pos).setQuantity(currentValInt);
             }
 
             if(checkInc){
                 currentTotal += price;
+                ItemListAdapter.menuMaos.get(pos).setTotalPrice(currentValInt*ItemListAdapter.menuMaos.get(pos).getItemPrice());
+                ItemListAdapter.menuMaos.get(pos).setQuantity(currentValInt);
             }
 
             if(checkDec){
                 if(currentValInt>1 && currentTotal>0){
                     currentTotal -= price;
+                    ItemListAdapter.menuMaos.get(pos).setTotalPrice((currentValInt-1)*ItemListAdapter.menuMaos.get(pos).getItemPrice());
+                    ItemListAdapter.menuMaos.get(pos).setQuantity(currentValInt-1);
                 }
             }
 
             if(deselect){
                 if(currentTotal>0){
                     currentTotal -= currentValInt*price;
+                    ItemListAdapter.menuMaos.get(pos).setTotalPrice(currentValInt*ItemListAdapter.menuMaos.get(pos).getItemPrice());
+                    ItemListAdapter.menuMaos.get(pos).setQuantity(currentValInt);
                 }
             }
-
-//            if (!checked) {
-//                if (currentTotal > 0) {
-//                    currentTotal -= currentValInt*price;
-//                }
-//            }
 
                 TextView totalPrice = (TextView) findViewById( R.id.total );
                 totalPrice.setText( "" + currentTotal + " Rs." );

@@ -6,7 +6,6 @@ public class UserInformation {
     public String address;
     UserInformation(String name,String address)
     {
-
         this.name=name;
         this.address=address;
 

@@ -1,9 +1,22 @@
 package com.example.android.restuarantfinder;
 
+import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -22,9 +35,13 @@ public class BillPayment extends AppCompatActivity {
         int i;
         for(i=0; i<ItemListAdapter.menuMaos.size(); i++){
             if(ItemListAdapter.menuMaos.get(i).getSelected()){
-                list.add(new allMenuMao(ItemListAdapter.menuMaos.get(i).getItemName(), ItemListAdapter.menuMaos.get(i).getItemPrice()));
+                list.add(new allMenuMao(ItemListAdapter.menuMaos.get(i).getItemName(), ItemListAdapter.menuMaos.get(i).getItemPrice(),
+                        ItemListAdapter.menuMaos.get(i).getQuantity(), ItemListAdapter.menuMaos.get(i).getTotalPrice()));
             }
         }
+
+        Intent intent = getIntent();
+        int currentTotal = intent.getIntExtra("currentTotal", 0);
 
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true); //every item in the recycler view will have fixed size
@@ -33,6 +50,32 @@ public class BillPayment extends AppCompatActivity {
         adapter = new SelectedItemListAdapter(list, this);
 
         recyclerView.setAdapter(adapter); //sets adapter to recycler view
+
+        TextView totalprice = (TextView) findViewById(R.id.total);
+        totalprice.setText("Total Bill "+ currentTotal);
+
+        FirebaseAuth user = FirebaseAuth.getInstance();
+        FirebaseUser userid = user.getCurrentUser();
+        String u = userid.getUid();
+        final EditText editAddress=(EditText)findViewById(R.id.editAddress);
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference(u);
+        mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                UserInformation editAddress1=dataSnapshot.getValue(UserInformation.class);
+                String editAddress2=editAddress1.address;
+                //String editAddress2=editAddress1.toString();
+                editAddress.setText(editAddress2);
+                //Log.d("Isthisright"," " +editAddress);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
 
     }
 }

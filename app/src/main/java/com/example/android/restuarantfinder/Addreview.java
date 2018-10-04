@@ -33,7 +33,7 @@ public class Addreview extends AppCompatActivity {
 
     private void postToFirebaseDatabase() {
         EditText review =(EditText)findViewById(R.id.editreview);
-        String name=review.getText().toString().trim();
+        String name=review.getText().toString();
         if (review == null) {
             return;
         }
@@ -51,19 +51,17 @@ public class Addreview extends AppCompatActivity {
         }
     }
 }
-   class UserPost
+class UserPost
+{
+    public String review;
+    public String uid;
+    UserPost(String review)
     {
-        public String review;
+        this.review=review;
 
-        UserPost(String review)
-        {
-
-            this.review=review;
-
-        }
-        UserPost()
-        {
-
-        }
     }
+    UserPost()
+    {
 
+    }
+}

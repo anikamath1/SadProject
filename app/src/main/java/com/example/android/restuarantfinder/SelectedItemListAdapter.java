@@ -33,7 +33,8 @@ public class SelectedItemListAdapter extends RecyclerView.Adapter<SelectedItemLi
 
         holder.itemName.setText("" + menuMaos.get(position).getItemName());
         holder.itemPrice.setText("" + menuMaos.get(position).getItemPrice());
-
+        holder.itemQuant.setText("" + menuMaos.get(position).getQuantity());
+        holder.itemTotalPrice.setText(""+ menuMaos.get(position).getTotalPrice());
     }
 
     @Override
@@ -45,6 +46,8 @@ public class SelectedItemListAdapter extends RecyclerView.Adapter<SelectedItemLi
 
         public TextView itemName;
         public TextView itemPrice;
+        public TextView itemQuant;
+        public TextView itemTotalPrice;
 
 
         public ViewHolder(View itemView) {
@@ -52,7 +55,8 @@ public class SelectedItemListAdapter extends RecyclerView.Adapter<SelectedItemLi
 
             itemName = itemView.findViewById(R.id.itemname);
             itemPrice = itemView.findViewById(R.id.itemprice);
-
+            itemQuant = itemView.findViewById(R.id.itemquant);
+            itemTotalPrice = itemView.findViewById(R.id.itemtotalprice);
 
         }
     }

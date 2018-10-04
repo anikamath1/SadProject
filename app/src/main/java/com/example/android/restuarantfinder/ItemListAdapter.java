@@ -68,6 +68,7 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
                     intent.putExtra("currentValInt", currentValInt);
                     intent.putExtra("deselect", deselect);
                     intent.putExtra("name", name);
+                    intent.putExtra("pos", pos);
                     LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
 
 
@@ -87,7 +88,7 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
                     intent.putExtra("currentValInt", currentValInt);
                     intent.putExtra("checked", checked);
                     intent.putExtra("name", name);
-
+                    intent.putExtra("pos", pos);
                     LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
 
 
@@ -119,7 +120,7 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
                     intent.putExtra("currentValInt", currentValInt);
                     intent.putExtra("checkInc", checkInc);
                     intent.putExtra("name", name);
-
+                    intent.putExtra("pos", pos);
                     LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
                     checkInc = false;
                 }
@@ -146,12 +147,13 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
                     intent.putExtra("currentValInt", currentValInt);
                     intent.putExtra("name", name);
                     intent.putExtra("checkDec", checkDec);
-
+                    intent.putExtra("pos",  pos);
                     LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
 
                     if(currentValInt>1){
                         currentValInt--;
                     }
+
                     holder.count.setText(""+currentValInt);
                     checkDec = false;
 

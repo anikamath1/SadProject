@@ -46,7 +46,9 @@ public class showlist extends AppCompatActivity {
         obj.setOnItemClickListener( new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView,View view,int position,long arg) {
-                if(adapterView.getItemAtPosition(position).toString().equalsIgnoreCase("garden court"))
+                if(adapterView.getItemAtPosition(position).toString().equalsIgnoreCase("zaffran")
+                        || adapterView.getItemAtPosition(position).toString().equalsIgnoreCase("food point")
+                        || adapterView.getItemAtPosition(position).toString().equalsIgnoreCase("garden court"))
                 {
                     //int pos = position;
                     String name = (String) adapterView.getItemAtPosition(position);
@@ -55,13 +57,6 @@ public class showlist extends AppCompatActivity {
                     mao.putExtra("restName", name);
                     //mao.putExtra("position", pos);
                     startActivity(mao);
-                }
-                if(adapterView.getItemAtPosition(position).toString().equalsIgnoreCase("sagar city"))
-                {
-                    String name = (String) adapterView.getItemAtPosition(position);
-                    Intent vrindavan = new Intent(showlist.this, Vrindavan.class);
-                    vrindavan.putExtra("restName", name);
-                    startActivity(vrindavan);
                 }
 
             }

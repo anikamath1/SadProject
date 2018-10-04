@@ -17,15 +17,31 @@
                 android:id="@+id/itemname"
                 android:layout_alignParentLeft="true"
                 android:text="item1"
-                android:padding="15dp"/>
+                android:padding="25dp"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/itemprice"
-                android:layout_alignParentRight="true"
+                android:layout_toRightOf="@id/itemname"
                 android:text="item2"
-                android:padding="15dp"/>
+                android:padding="25dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/itemquant"
+                android:layout_toRightOf="@id/itemprice"
+                android:text="item2"
+                android:padding="25dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/itemtotalprice"
+                android:layout_toRightOf="@id/itemquant"
+                android:text="item2"
+                android:padding="25dp"/>
 
 
         </RelativeLayout>
