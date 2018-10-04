@@ -7,8 +7,11 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -30,13 +33,14 @@ public class BillPayment extends AppCompatActivity {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_bill_payment );
 
-        ArrayList<allMenuMao> list = new ArrayList<>();
+        final ArrayList<allMenuMao> list = new ArrayList<>();
 
         int i;
         for(i=0; i<ItemListAdapter.menuMaos.size(); i++){
             if(ItemListAdapter.menuMaos.get(i).getSelected()){
                 list.add(new allMenuMao(ItemListAdapter.menuMaos.get(i).getItemName(), ItemListAdapter.menuMaos.get(i).getItemPrice(),
                         ItemListAdapter.menuMaos.get(i).getQuantity(), ItemListAdapter.menuMaos.get(i).getTotalPrice()));
+
             }
         }
 
@@ -58,8 +62,8 @@ public class BillPayment extends AppCompatActivity {
         FirebaseUser userid = user.getCurrentUser();
         String u = userid.getUid();
         final EditText editAddress=(EditText)findViewById(R.id.editAddress);
-        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference(u);
-        mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+        DatabaseReference mDatabase1 = FirebaseDatabase.getInstance().getReference(u);
+        mDatabase1.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 UserInformation editAddress1=dataSnapshot.getValue(UserInformation.class);
@@ -74,8 +78,48 @@ public class BillPayment extends AppCompatActivity {
 
             }
         });
+        Button ProceedToPay=(Button)findViewById(R.id.ProceedToPay);
+        ProceedToPay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth user = FirebaseAuth.getInstance();
+                FirebaseUser userid = user.getCurrentUser();
+                String u = userid.getUid();
+
+                //UserPost userpost = new UserPost(name);
+
+                DatabaseReference mDatabase1 = FirebaseDatabase.getInstance().getReference("/manager/"+u).push();
+                for(int i=0; i<ItemListAdapter.menuMaos.size(); i++){
+                    if(ItemListAdapter.menuMaos.get(i).getSelected()){
+                        String itemName=ItemListAdapter.menuMaos.get(i).getItemName();
+                        int itemPrice=ItemListAdapter.menuMaos.get(i).getItemPrice();
+                        int quantity=ItemListAdapter.menuMaos.get(i).getQuantity();
+                        int totalprice=ItemListAdapter.menuMaos.get(i).getTotalPrice();
+                        OrderList obj= new OrderList(itemName,itemPrice,quantity,totalprice);
+                        mDatabase1.push().setValue(obj);
+
+                    }
+                }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+                Toast.makeText(getApplicationContext(),"Your order has been sent for processing", Toast.LENGTH_SHORT).show();
+
+            }
+        });
 
     }
 }
+

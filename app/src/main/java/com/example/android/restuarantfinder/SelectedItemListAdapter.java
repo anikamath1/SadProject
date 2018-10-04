@@ -18,6 +18,13 @@ public class SelectedItemListAdapter extends RecyclerView.Adapter<SelectedItemLi
     private Context context;
     private static int count = 0;
 
+    public SelectedItemListAdapter(List<allMenuMao> menuMaos) {
+        this.menuMaos = menuMaos;
+
+    }
+
+
+
     public SelectedItemListAdapter(List<allMenuMao> menuMaos, Context context) {
         this.menuMaos = menuMaos;
         this.context = context;

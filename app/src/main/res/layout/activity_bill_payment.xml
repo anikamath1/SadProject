@@ -79,7 +79,7 @@
             android:padding="15dp" />
 
         <Button
-
+            android:id="@+id/ProceedToPay"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_alignParentBottom="true"
