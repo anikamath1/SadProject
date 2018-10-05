@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.database.sqlite.SQLiteStatement;
 import android.util.Log;
 
 import java.io.File;
@@ -39,8 +40,9 @@ public class dataBaseAccess {
     //to open database
     public void open(){
         this.db = openHelper.getReadableDatabase();
-
-
+    }
+    public void openForWriting(){
+        this.db = openHelper.getWritableDatabase();
     }
 
     public void close(){
@@ -93,6 +95,18 @@ public class dataBaseAccess {
         cursor.close();
         return list;
     }
+
+    public void insert(String restname)
+    {
+        String str = "INSERT INTO restDetails(restID,restName,restAddress) VALUES(?,?,?)";
+        SQLiteStatement stmt = db.compileStatement(str);
+        stmt.bindLong(1, 9);
+        stmt.bindString(2,restname);
+        stmt.bindString(3, "andheri");
+        long i = stmt.executeInsert();
+    }
+
+
 
 
 }

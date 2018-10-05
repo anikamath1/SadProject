@@ -1,5 +1,6 @@
 package com.example.android.restuarantfinder;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -23,6 +24,8 @@ public class AdminPassword extends AppCompatActivity {
                 if(password.getText().toString().equals("password"))
                 {
                     Toast.makeText(getApplicationContext(),"Password correct",Toast.LENGTH_SHORT).show();
+                    Intent functionalities = new Intent(getApplicationContext(), AdminFunctionalitiesPage.class);
+                    startActivity(functionalities);
                 }
                 else
                 {

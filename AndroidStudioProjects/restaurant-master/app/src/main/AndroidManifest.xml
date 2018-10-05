@@ -57,7 +57,9 @@
         <activity android:name=".AdminLogin" />
         <activity android:name=".AdminPassword" />
         <activity android:name=".AddEditAddressName" />
-        <activity android:name=".PlaceOrder"></activity>
+        <activity android:name=".PlaceOrder" />
+        <activity android:name=".AdminFunctionalitiesPage" />
+        <activity android:name=".AddRestaurantPage"></activity>
     </application>
 
 </manifest>
